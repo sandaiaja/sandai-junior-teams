@@ -1,0 +1,178 @@
+<!-- 
+このコードをコピーして、WordPressの「カスタムHTML」ブロックに貼り付けてください。
+Copy and paste this code into your WordPress Custom HTML block.
+-->
+
+<style>
+    /* ボタン全体のコンテナ */
+    .sandai-link-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 40px 0;
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        perspective: 1000px;
+        /* 3D効果のための視点 */
+    }
+
+    /* ボタン本体のデザイン */
+    .sandai-btn {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* チームカラーのグラデーション (Deep Blue -> Cyan) + 光沢 */
+        background: linear-gradient(135deg, #004a99 0%, #0088cc 50%, #00bfff 100%);
+        color: #ffffff !important;
+        text-decoration: none !important;
+        padding: 20px 60px;
+        border-radius: 60px;
+        /* 立体感を出す多重シャドウ */
+        box-shadow:
+            0 15px 35px rgba(0, 60, 130, 0.4),
+            /* 大きな影 */
+            0 5px 15px rgba(0, 0, 0, 0.2),
+            /* 濃い影 */
+            inset 0 2px 1px rgba(255, 255, 255, 0.5),
+            /* 上部のハイライト */
+            inset 0 -3px 2px rgba(0, 0, 0, 0.2);
+        /* 下部のシェード */
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* バウンスするような動き */
+        overflow: hidden;
+        min-width: 320px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+    }
+
+    /* ホバー時のエフェクト */
+    .sandai-btn:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow:
+            0 20px 45px rgba(0, 60, 130, 0.5),
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            inset 0 2px 1px rgba(255, 255, 255, 0.6),
+            inset 0 -3px 2px rgba(0, 0, 0, 0.2);
+        filter: brightness(1.15);
+    }
+
+    /* クリック時のエフェクト */
+    .sandai-btn:active {
+        transform: translateY(-2px) scale(0.98);
+        box-shadow:
+            0 5px 15px rgba(0, 60, 130, 0.4),
+            inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* メインテキスト (英語) */
+    .sandai-btn-text-main {
+        font-size: 1.6rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+        /* テキストにも深いドロップシャドウ */
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 4px;
+        background: linear-gradient(to bottom, #ffffff 0%, #e0f7ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: #fff;
+        /* フォールバック */
+    }
+
+    /* サブテキスト (日本語 + CHECK Here) */
+    .sandai-btn-text-sub {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #e0f7ff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* アクセントアイコン (オレンジ) - 宝石のような質感 */
+    .sandai-btn-icon {
+        background: linear-gradient(135deg, #f1c40f 0%, #e67e22 100%);
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 3px 8px rgba(230, 126, 34, 0.5);
+        /* 鼓動するアニメーション */
+        animation: sandai-pulse 2s infinite;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* キラッと光るエフェクト (より鋭く) */
+    .sandai-btn::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -100%;
+        width: 50%;
+        height: 200%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+        transform: rotate(25deg);
+        transition: 0.6s;
+        pointer-events: none;
+    }
+
+    .sandai-btn:hover::before {
+        left: 150%;
+        transition: 0.8s ease-in-out;
+    }
+
+    /* アニメーション定義 */
+    @keyframes sandai-pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7);
+        }
+
+        70% {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 12px rgba(243, 156, 18, 0);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(243, 156, 18, 0);
+        }
+    }
+
+    /* モバイル対応 */
+    @media (max-width: 480px) {
+        .sandai-btn {
+            padding: 18px 30px;
+            width: 100%;
+            min-width: auto;
+        }
+
+        .sandai-btn-text-main {
+            font-size: 1.3rem;
+        }
+
+        .sandai-btn-text-sub {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+
+<div class="sandai-link-wrapper">
+    <!-- リンク先はGitHub PagesのURL -->
+    <a href="https://sandaiaja.github.io/sandai-junior-teams/" class="sandai-btn" target="_blank" rel="noopener">
+        <span class="sandai-btn-text-main">SANDAI.JVC Team Profile</span>
+        <span class="sandai-btn-text-sub">
+            チームプロフィール
+            <span class="sandai-btn-icon">▶</span>
+            CHECK Here!
+        </span>
+    </a>
+</div>
